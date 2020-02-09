@@ -114,6 +114,10 @@ button:hover{
   line-height: 3;
 }
 
+.iphone:first-child{
+  font-weight: 600;
+}
+
 .iphone:nth-child(odd){
   background: rgb(189, 187, 187);
 }
