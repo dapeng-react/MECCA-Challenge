@@ -15,7 +15,7 @@ class App extends React.Component {
       isSearching: false,
       // the view for the search results
       // at the beginning, it has the default value below
-      resultDisplay: <div id="results">Do a search to find iphones</div>,
+      resultDisplay: <div id="results">Do a search to find iPhones</div>,
     }
   }
 
@@ -37,10 +37,16 @@ class App extends React.Component {
     if (iphones.length) {
       result = (
         <>
-          <div id="results">
-            <div className="results">
-              { iphones.map((iphone) => <Iphone key={iphone.id} iphone={iphone} />)}
+          <div id="results">Got {iphones.length} iPhones</div>
+          <div className="result-list">
+            <div className="list iphone">
+              <span>ID</span>
+              <span>Name</span>
+              <span>Color</span>
+              <span>Capacity</span>
+              <span>Price</span>
             </div>
+            { iphones.map((iphone) => <Iphone key={iphone.id} iphone={iphone} />)}
           </div>
         </>
       )
@@ -61,23 +67,25 @@ class App extends React.Component {
           <h1>ACME inc</h1>
         </div>
         <div className="content">
-          <input
-            placeholder="search"
-            value={ searchTerm }
-            onChange={(event) => {
-              this.setState({
-                searchTerm: event.target.value,
-              })
-            }}
-          />
-          <button
-            type="button"
-            onClick={() => {
-              this.doSearch()
-            }}
-          >
-            Search
-          </button>
+          <div className="search-panel">
+            <input
+              placeholder="search"
+              value={ searchTerm }
+              onChange={(event) => {
+                this.setState({
+                  searchTerm: event.target.value,
+                })
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                this.doSearch()
+              }}
+            >
+              Search
+            </button>
+          </div>
           { resultDisplay }
         </div>
         <div className="footer">
