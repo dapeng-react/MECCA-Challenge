@@ -1,5 +1,7 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import Iphone from './Iphone'
+import NotFound from './NotFound'
+import './App.css'
 
 import * as Data from './data'
 
@@ -9,20 +11,46 @@ class App extends React.Component {
     this.state = {
       iphones: [],
       searchTerm: '',
-      isSearching: false
+      isSearching: false,
+      // the view for the search results
+      // at the beginning, it has the default value below
+      resultDisplay: <div id="results">Do a search to find iphones</div>,
     }
   }
 
   doSearch = async () => {
     const { searchTerm } = this.state
+    // wait for result
     const iphones = await Data.getIphones(searchTerm)
+    // get a new view whenever doing a new search
+    const resultDisplay = this.updateDisplay(iphones);
     this.setState({
       iphones,
+      resultDisplay,
     })
   }
 
+  // this function returns a element based on the number of search results
+  updateDisplay = (iphones) => {
+    let result;
+    if (iphones.length) {
+      result = (
+        <>
+          <div id="results">
+            <div className="results">
+              { iphones.map((iphone) => <Iphone key={iphone.id} iphone={iphone} />)}
+            </div>
+          </div>
+        </>
+      )
+    } else {
+      result = <NotFound />
+    }
+    return result
+  }
+
   render() {
-    const { iphones, searchTerm } = this.state
+    const { resultDisplay, searchTerm } = this.state
     return (
       <div className="page">
         <div className="header">
@@ -47,12 +75,7 @@ class App extends React.Component {
           >
             Search
           </button>
-          {iphones.length
-          ? (
-            <div>got {iphones.length} iphones</div> 
-          )
-          : <div id="results">Do a search to find iphones</div>
-          }
+          { resultDisplay }
         </div>
         <div className="footer">
           <p>&copy; 2018 Fake Company</p>
