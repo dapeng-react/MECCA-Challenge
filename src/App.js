@@ -13,9 +13,12 @@ class App extends React.Component {
     }
   }
 
-  doSearch = () => {
+  doSearch = async () => {
     const { searchTerm } = this.state
-    this.setState(Data.getIphones(searchTerm))
+    const iphones = await Data.getIphones(searchTerm)
+    this.setState({
+      iphones,
+    })
   }
 
   render() {
@@ -36,7 +39,14 @@ class App extends React.Component {
               })
             }}
           />
-          <button type="button">Search</button>
+          <button
+            type="button"
+            onClick={() => {
+              this.doSearch()
+            }}
+          >
+            Search
+          </button>
           {iphones.length
           ? (
             <div>got {iphones.length} iphones</div> 
