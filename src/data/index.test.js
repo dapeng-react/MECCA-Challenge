@@ -37,10 +37,22 @@ describe('Data module', () => {
   describe('getIphones', () => {
     it('Should call a handleError function when error occurs in fetching data', async () => {
       const error = new Error('test')
-      window.fetch = jest.fn().mockRejectedValue(error);
+      window.fetch = jest.fn().mockRejectedValueOnce(error);
       const handleError = jest.fn();
       await getIphones('', handleError);
       expect(handleError).toHaveBeenCalledWith(error)
+    })
+
+    it('Should call a return an array of objects when fetch successfully', async () => {
+      window.fetch = jest.fn().mockImplementation(() => (
+        new Promise((resolve) => {
+          resolve({
+            json: () => sampleData,
+          })
+        })
+      ))
+      const result = await getIphones('')
+      expect(result).toEqual(expect.arrayContaining(sampleData))
     })
   });
 })
