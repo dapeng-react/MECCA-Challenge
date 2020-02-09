@@ -1,3 +1,14 @@
+/**
+ * In this App users can search for an iPhone
+ * Type in a search term, it will return a list of iPhones
+ * of which the name, color or capacity contains the term,
+ * regardless of upper or lower cases
+ * 
+ * @author Dapeng Zhang
+ * @Date 9 Feb 2020
+ * @version 1.0.0
+ */
+
 import React from 'react'
 import Iphone from './Iphone'
 import NotFound from './NotFound'
@@ -69,7 +80,7 @@ class App extends React.Component {
         <div className="content">
           <div className="search-panel">
             <input
-              placeholder="search"
+              placeholder="Search by Name, Color or Capacity"
               value={ searchTerm }
               onChange={(event) => {
                 this.setState({
