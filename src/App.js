@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { iphones } = this.state
+    const { iphones, searchTerm } = this.state
     return (
       <div className="page">
         <div className="header">
@@ -27,9 +27,17 @@ class App extends React.Component {
           <h1>ACME inc</h1>
         </div>
         <div className="content">
-          <input placeholder="search" />
+          <input
+            placeholder="search"
+            value={ searchTerm }
+            onChange={(event) => {
+              this.setState({
+                searchTerm: event.target.value,
+              })
+            }}
+          />
           <button type="button">Search</button>
-          {iphones.length 
+          {iphones.length
           ? (
             <div>got {iphones.length} iphones</div> 
           )
