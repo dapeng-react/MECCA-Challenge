@@ -87,6 +87,11 @@ class App extends React.Component {
                   searchTerm: event.target.value,
                 })
               }}
+              onKeyDown={(event) => {
+                if(event.keyCode === 13) {
+                  this.doSearch()
+                }
+              }}
             />
             <button
               type="button"
