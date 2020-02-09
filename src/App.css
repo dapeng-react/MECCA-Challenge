@@ -7,19 +7,32 @@ Add any additional CSS rules to style the form and search results output.
 */
 
 .page {
-
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 60rem;
+  background: #EEEEEED9;
 }
 
 .header {
-
+  background: #EEEEEE;
+  flex: 10rem;
+  height: 100%;
 }
 
 .logo {
 
 }
 
-.footer {
+.content {
+  flex: auto;
+  height: 100%;
+}
 
+.footer {
+  flex: 10rem;
+  height: 100%;
+  background: #EEEEEE;
 }
 
 input {
