@@ -1,6 +1,7 @@
 import React from 'react'
 import Iphone from './Iphone'
 import NotFound from './NotFound'
+import Logo from './Logo'
 import './App.css'
 
 import * as Data from './data'
@@ -54,7 +55,9 @@ class App extends React.Component {
     return (
       <div className="page">
         <div className="header">
-          <div className="logo"></div>
+          <div className="logo">
+            <Logo />
+          </div>
           <h1>ACME inc</h1>
         </div>
         <div className="content">
